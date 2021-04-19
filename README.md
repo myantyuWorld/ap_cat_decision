@@ -8,7 +8,7 @@
 
 ## 参考資料
 
-* 解析対象の、ねこ  
+* 解析対象の、ねこ。かわいい。  
 
 なつ  
 ![image](https://user-images.githubusercontent.com/26809782/115238974-3ba89f80-a159-11eb-906f-1825ef6deebf.png)
