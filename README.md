@@ -27,6 +27,20 @@ https://colab.research.google.com/notebooks/welcome.ipynb?hl=ja#scrollTo=aKc7JTH
 1. macへの"Anaconda"へのインストールは以下参照  
 https://www.python.jp/install/anaconda/macos/install.html
 
+## Google Colabでの学習モデル構築
+
+```
+!git clone https://github.com/ultralytics/yolov5
+!pip install -r yolov5/requirements.txt
+%cd /content/yolov5
+!python train.py --img 640 480 --batch 20 --epochs 100 --data '/content/drive/My Drive/cat_analysis/cat.yaml' --name cat_analysis
+```
+
++ epochs(エポック数)  
+学習の回数
+
+
+
 ## 実行手順
 
 ```
