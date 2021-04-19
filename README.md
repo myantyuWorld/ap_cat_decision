@@ -27,9 +27,18 @@ https://colab.research.google.com/notebooks/welcome.ipynb?hl=ja#scrollTo=aKc7JTH
 1. macへの"Anaconda"へのインストールは以下参照  
 https://www.python.jp/install/anaconda/macos/install.html
 
+## 実行手順
+
+```
+conda activate yolov5
+cd yolov5
+python detect.py --source 0　// モデル指定なし、のちに、猫学習モデルを移植して、引数には学習モデルを指定する
+```
+
 ## Google Colabのモデル構築ログ
 
 <details><summary>Google Colabのモデル構築中のログ</summary><div>
+
 
 ```
 /content/yolov5
@@ -118,12 +127,12 @@ Starting training for 300 epochs...
                Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95:   0% 0/2 [00:00<?, ?it/s]
 
 ```　
-</div></details>
 
-# 実行手順
+</div></details>    
 
+  
 ```
-conda activate yolov5
-cd yolov5
-python detect.py --source 0　// モデル指定なし
-```
+  
+  
+
+
