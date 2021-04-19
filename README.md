@@ -23,3 +23,7 @@ https://qiita.com/PoodleMaster/items/5f2cc3248c03b03821b8
 
 1. 学習モデルの構築は"Google Colab"を使用する  
 https://colab.research.google.com/notebooks/welcome.ipynb?hl=ja#scrollTo=aKc7JTHQMi-r
+
+1. macへの"Anaconda"へのインストールは以下参照
+https://www.python.jp/install/anaconda/macos/install.html
+
