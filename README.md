@@ -119,3 +119,11 @@ Starting training for 300 epochs...
 
 ```　
 </div></details>
+
+# 実行手順
+
+```
+conda activate yolov5
+cd yolov5
+python detect.py --source 0　// モデル指定なし
+```
