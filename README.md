@@ -32,6 +32,8 @@ https://www.python.jp/install/anaconda/macos/install.html
 
 ## Google Colabでの学習モデル構築
 
+https://colab.research.google.com/drive/1giVyUA0oirvbcvUcVfHmpr-rrr4zuUcF?hl=ja#scrollTo=-qNmUztKMptW
+
 ```
 !git clone https://github.com/ultralytics/yolov5
 !pip install -r yolov5/requirements.txt
