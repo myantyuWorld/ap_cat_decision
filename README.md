@@ -46,7 +46,7 @@ https://colab.research.google.com/drive/1giVyUA0oirvbcvUcVfHmpr-rrr4zuUcF?hl=ja#
 
 
 
-## 実行手順
+## 実行手順（デフォルトモデル）
 
 ```
 conda activate yolov5
@@ -152,6 +152,8 @@ Starting training for 300 epochs...
   
 ```
   
+# 学習させた学習モデルで解析してみる
   
+TOD
 
 
