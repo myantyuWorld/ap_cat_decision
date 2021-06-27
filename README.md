@@ -157,3 +157,28 @@ Starting training for 300 epochs...
 TOD
 
 
+# ラズベリーパイにberryconda install
+
+- ラズベリーパイ向けに作成されたconda
+
+$  wget https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda3-2.0.0-Linux-armv6l.sh
+
+$ chmod +x Berryconda3-2.0.0-Linux-armv7l.sh
+
+$ ./Berryconda3-2.0.0-Linux-armv7l.sh
+
+$ source ./.bashrc
+
+$ conda update --all
+
+# condaでYolov5動作確認
+
+c:\>conda create -n yolov5 python=3.8
+c:\>conda activate yolov5
+(yolov5) c:\>git clone https://github.com/ultralytics/yolov5.git
+(yolov5) c:\>cd yolov5
+(yolov5) c:\yolov5>conda install pytorch torchvision -c pytorch 
+(yolov5) c:\yolov5>pip install -U -r requirements.txt
+(yolov5) c:\yolov5>python detect.py --source 0　// カメラ起動できたら、OK
+
+
