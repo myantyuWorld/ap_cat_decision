@@ -58,6 +58,15 @@ Done. (2.015s)
 
 ![image](https://user-images.githubusercontent.com/26809782/124346120-0bc94e00-dc18-11eb-8ef6-60e2363a6dc1.png)
 
+# Motion(監視カメラシステム構築）
+
+### 参考資料
+
+https://centossrv.com/motion.shtml
+https://motion-project.github.io/motion_build.html
+https://www.rootlinks.net/2020/02/17/install-ffmpeg-on-centos-8-with-rpmfusion-repo/
+
+
 # トラブルシューティング
 
 - ImportError: libGL.so.1 on CentOS
