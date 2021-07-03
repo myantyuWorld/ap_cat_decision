@@ -1,6 +1,4 @@
-# Qiita投稿用
-
-# CentOS初期インストール
+# CentOS初期設定　→　Yolov5動かすまで
 
 ## VirtualBoxでCentOSインストール
 
@@ -13,3 +11,4 @@
 
 - 以下を参考にインストールしました。
 - https://mebee.info/2020/11/07/post-22363/
+
