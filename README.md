@@ -60,7 +60,7 @@ python detect.py --source 0　// モデル指定なし、のちに、猫学習�
 
 ## Google Colabのモデル構築ログ
 
-<details><summary>Google Colabのモデル構築中のログ</summary><div>
+Google Colabのモデル構築中のログ
 
 
 ```
@@ -149,15 +149,9 @@ Starting training for 300 epochs...
      5/299        0G   0.09613   0.03306   0.03058    0.1598        15       640: 100% 4/4 [02:00<00:00, 30.04s/it]
                Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95:   0% 0/2 [00:00<?, ?it/s]
 
-```　
 
-</div></details>    
-
-
-
-
-
-
+　
+```
 
   
 # 学習させた学習モデルで解析してみる
