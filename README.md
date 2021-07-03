@@ -153,13 +153,22 @@ Starting training for 300 epochs...
 
 </div></details>    
 
-  
-```
+
+
+
+
+
+
   
 # 学習させた学習モデルで解析してみる
   
-TOD
+```
+python detect.py --source 0 --weight {構築したモデル名}.pt
+```
 
+# ネットワークカメラの映像でYOLO分析
+
+- qiita.md参照
 
 # ラズベリーパイにberryconda install
 
