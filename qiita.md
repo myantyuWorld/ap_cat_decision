@@ -62,9 +62,10 @@ Done. (2.015s)
 
 ### 参考資料
 
-https://centossrv.com/motion.shtml
-https://motion-project.github.io/motion_build.html
-https://www.rootlinks.net/2020/02/17/install-ffmpeg-on-centos-8-with-rpmfusion-repo/
+https://centossrv.com/motion.shtml  
+https://motion-project.github.io/motion_build.html  
+https://www.rootlinks.net/2020/02/17/install-ffmpeg-on-centos-8-with-rpmfusion-repo/  
+https://github.com/Motion-Project/motion/issues/857  
 
 
 # トラブルシューティング
