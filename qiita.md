@@ -68,6 +68,11 @@ https://www.rootlinks.net/2020/02/17/install-ffmpeg-on-centos-8-with-rpmfusion-r
 https://github.com/Motion-Project/motion/issues/857  
 http://www.iegeek.com/downloads/user-manual-2
 
+#### 実行
+
+```
+motion -s -c /usr/local/etc/motion/motion.conf
+```
 
 # トラブルシューティング
 
