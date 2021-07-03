@@ -29,4 +29,14 @@ conda info
 - https://github.com/ultralytics/yolov5
 
 
+## Yolov5の使用方法
 
+```
+$ python detect.py --source 0  # webcam
+                            file.jpg  # image 
+                            file.mp4  # video
+                            path/  # directory
+                            path/*.jpg  # glob
+                            'https://youtu.be/NUsoVlDFqZg'  # YouTube video
+                            'rtsp://example.com/media.mp4'  # RTSP, RTMP, HTTP stream
+```
