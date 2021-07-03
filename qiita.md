@@ -40,3 +40,9 @@ $ python detect.py --source 0  # webcam
                             'https://youtu.be/NUsoVlDFqZg'  # YouTube video
                             'rtsp://example.com/media.mp4'  # RTSP, RTMP, HTTP stream
 ```
+
+# トラブルシューティング
+
+- ImportError: libGL.so.1 on CentOS
+ -  https://stackoverflow.com/questions/60628083/importerror-libgl-so-1-on-centos
+ -  yum install mesa-libGL　で解決！
