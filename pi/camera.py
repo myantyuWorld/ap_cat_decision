@@ -22,6 +22,6 @@ with picamera.PiCamera() as camera:
  timestr = datetime.now().strftime('%Y%m%d%H%M%S')
  camera.capture(timestr+'.jpg')
 
- localFile=open(path '/' + timestr + '.jpg',"rb") 
+ localFile=open(path + '/' + timestr + '.jpg',"rb") 
  conn.storeFile("click",timestr + '.jpg',localFile) 
  localFile.close()
