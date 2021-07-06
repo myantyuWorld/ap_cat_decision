@@ -58,6 +58,12 @@ Done. (2.015s)
 
 ![image](https://user-images.githubusercontent.com/26809782/124346120-0bc94e00-dc18-11eb-8ef6-60e2363a6dc1.png)
 
+# ラズパイで写真撮影、ファイルサーバーの特定フォルダにアップロード
+
+- python-camera
+- pysmb
+
+
 # Motion(監視カメラシステム構築）
 
 ### 参考資料
