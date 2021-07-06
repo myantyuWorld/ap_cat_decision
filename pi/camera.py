@@ -1,5 +1,6 @@
 import time
 import picamera
+import os
 from datetime import datetime
 from smb.SMBConnection import SMBConnection
 
@@ -10,6 +11,9 @@ conn=SMBConnection(username,password,"","",use_ntlm_v2 = True)
 result = conn.connect(host, 445)
 print("login successful")
 
+path = os.getcwd()
+
+print(path)
 
 with picamera.PiCamera() as camera:
  camera.resolution = (1024, 768)
@@ -17,3 +21,7 @@ with picamera.PiCamera() as camera:
  time.sleep(2)
  timestr = datetime.now().strftime('%Y%m%d%H%M%S')
  camera.capture(timestr+'.jpg')
+
+ #localFile=open("file path","rb") 
+ #conn.storeFile("Shared folder name","Storage path",localFile) 
+ #localFile.close()
