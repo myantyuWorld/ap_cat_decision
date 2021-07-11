@@ -51,14 +51,32 @@ def get_images():
 
     return jsonify(data)
 
+###
+### 写真撮影メソッド(手動) 
+###
 @app.route('/shooting')
 def shooting():
+    host="192.168.0.100"  #ip or domain name
+    username="click"
+    password="password"
+    conn=SMBConnection(username,password,"","",use_ntlm_v2 = True)
+    result = conn.connect(host, 445)
+    print("login successful")
+
+    path = os.getcwd()
+
+    print(path)
+
     with picamera.PiCamera() as camera:
         camera.resolution = (640, 480)
         camera.start_preview()
         time.sleep(2)
         timestr = datetime.now().strftime('%Y%m%d%H%M%S')
         camera.capture(timestr +'.jpg')
+
+    localFile=open(path + '/' + timestr + '.jpg',"rb") 
+    conn.storeFile("click",timestr + '.jpg',localFile) 
+    localFile.close()
 
     return image_file_to_base64(timestr + '.jpg')
 
@@ -67,6 +85,5 @@ def good():
     name = "Good"
     return name
 
-## おまじない
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
