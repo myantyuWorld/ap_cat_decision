@@ -60,7 +60,7 @@ def shooting():
         timestr = datetime.now().strftime('%Y%m%d%H%M%S')
         camera.capture(timestr +'.jpg')
 
-    return image_file_to_base64("timestr"+'.jpg')
+    return image_file_to_base64(timestr + '.jpg')
 
 @app.route('/good')
 def good():
