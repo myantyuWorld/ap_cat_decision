@@ -22,6 +22,31 @@ def image_file_to_base64(file_path):
 
     return data.decode('utf-8')
 
+def _shooting():
+    host="192.168.0.100"  #ip or domain name
+    username="click"
+    password="password"
+    conn=SMBConnection(username,password,"","",use_ntlm_v2 = True)
+    result = conn.connect(host, 445)
+    print("login successful")
+
+    path = os.getcwd()
+
+    print(path)
+
+    with picamera.PiCamera() as camera:
+        camera.resolution = (640, 480)
+        camera.start_preview()
+        time.sleep(2)
+        timestr = datetime.now().strftime('%Y%m%d%H%M%S')
+        camera.capture(timestr +'.jpg')
+
+    localFile=open(path + '/' + timestr + '.jpg',"rb") 
+    conn.storeFile("click",timestr + '.jpg',localFile) 
+    localFile.close()
+
+    return timestr + '.jpg'
+
 @app.route('/')
 def index():
     name = "Hello World"
@@ -56,29 +81,23 @@ def get_images():
 ###
 @app.route('/shooting')
 def shooting():
-    host="192.168.0.100"  #ip or domain name
-    username="click"
-    password="password"
-    conn=SMBConnection(username,password,"","",use_ntlm_v2 = True)
-    result = conn.connect(host, 445)
-    print("login successful")
+    return image_file_to_base64(_shooting())
 
-    path = os.getcwd()
+###
+### 写真撮影メソッド(手動 x 5) 
+###
+@app.route('/shooting5')
+def shooting5():
+    data = []
+    for num in range(5):
+        time.sleep(3)
+        image_file = _shooting()
+        data.append({
+            "file_name" : image_file,
+            "base64" : image_file_to_base64(image_file) 
+        })
 
-    print(path)
-
-    with picamera.PiCamera() as camera:
-        camera.resolution = (640, 480)
-        camera.start_preview()
-        time.sleep(2)
-        timestr = datetime.now().strftime('%Y%m%d%H%M%S')
-        camera.capture(timestr +'.jpg')
-
-    localFile=open(path + '/' + timestr + '.jpg',"rb") 
-    conn.storeFile("click",timestr + '.jpg',localFile) 
-    localFile.close()
-
-    return image_file_to_base64(timestr + '.jpg')
+    return data
 
 @app.route('/good')
 def good():
