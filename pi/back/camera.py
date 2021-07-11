@@ -9,6 +9,8 @@ import time
 import picamera
 import os
 from datetime import datetime
+
+import glob
 from smb.SMBConnection import SMBConnection
 
 app = Flask('flask-tesseract-api')
@@ -29,16 +31,36 @@ def index():
 def get_image():
     return image_file_to_base64("./sample/25.png")
 
+@app.route('/images')
+def get_images():
+    data = []
+
+    files =glob.glob("/home/pi/ap_cat_decision/*.jpg")
+    print(files)
+
+    for fname in files:
+        print(fname)
+        with open(fname, "rb") as image_file:
+            image_data = base64.b64encode(image_file.read())
+            
+        obj = {
+            "file_name" : fname,
+            "base64" : image_data
+        }
+        data.append(obj)
+
+    return jsonify(data)
+
 @app.route('/shooting')
 def shooting():
- with picamera.PiCamera() as camera:
-  camera.resolution = (640, 480)
-  camera.start_preview()
-  time.sleep(2)
-  timestr = datetime.now().strftime('%Y%m%d%H%M%S')
-  camera.capture(timestr+'.jpg')
+    with picamera.PiCamera() as camera:
+     camera.resolution = (640, 480)
+     camera.start_preview()
+     time.sleep(2)
+     timestr = datetime.now().strftime('%Y%m%d%H%M%S')
+     camera.capture(timestr+'.jpg')
 
-  return image_file_to_base64(timestr+'.jpg')
+    return image_file_to_base64(""+'.jpg')
 
 @app.route('/good')
 def good():
