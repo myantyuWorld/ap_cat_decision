@@ -97,7 +97,7 @@ def shooting5():
             "base64" : image_file_to_base64(image_file) 
         })
 
-    return data
+    return jsonify(data)
 
 @app.route('/good')
 def good():
