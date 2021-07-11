@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Vuedemo</title>
 </head>
 <body>
     <h1>ラズパイI/F</h1>
     <div id="app">
       <p>{{text}}</p>
+      <hr>
+      <img v-bind:src="'data:image/jpeg;base64,'+imageBytes" />
+      <hr>
+      <img v-bind:src="'data:image/jpeg;base64,'+shootingBytes" />
       <hr>
       <div>
        <button @click="camera">撮影</button>
@@ -22,15 +27,35 @@
         el:'#app',
         data() {
          return {
-          text:"HelloWorld!"
+          text:"ラズパイI/F画面へようこそ！",
+          imageBytes:"",
+          shootingBytes:""
          }
         },
         methods : {
          camera : function (event) {
-          alert("camera on click!")
+          var vm = this;
+
+          axios.get('http://localhost:5000/shooting')
+          .then(response => {
+           console.log(response.data)
+           vm.shootingBytes = response.data
+          })
+          .catch(err => {
+           console.log(response.data)
+          })
          },
          get_images : function (event) {
-          alert("get_images on click!")
+          var vm = this;
+
+          axios.get('http://localhost:5000/image')
+          .then(response => {
+           console.log(response.data)
+           vm.imageBytes = response.data
+          })
+          .catch(err => {
+           console.log(response.data)
+          })
          },
          get_yolov5_images : function(event) {
           alert("get_yolov5_images on click!")
