@@ -21,7 +21,43 @@
         <v-container>
           <h1>ラズパイI/F</h1>
           <v-row>
-            <v-data-table :headers="image_headers" :items="image_items" :items-per-page="5" class="elevation-1">
+            <v-card
+            class="mx-4"
+            outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="text-overline mb-4">
+                    ラズパイで写真撮影
+                  </div>
+                  <v-list-item-title class="text-h5 mb-1">
+                    "撮影"ボタンを押下することで、写真を撮影します。
+                  </v-list-item-title>
+                  <v-list-item-subtitle>撮影した写真は、yolov5分析用マシンの共有フォルダへとコピーされます。</v-list-item-subtitle>
+                  <v-list-item-subtitle>右に、撮影した写真のプレビューを表示します</v-list-item-subtitle>
+                </v-list-item-content>
+          
+                <v-list-item-avatar
+                  tile
+                  size="150"
+                  color="grey"
+                  :src="'data:image/jpeg;base64,'+ shootingBytes"
+                ></v-list-item-avatar>
+              </v-list-item>
+          
+              <v-card-actions>
+                <v-btn
+                  outlined
+                  rounded
+                  text
+                  @click="camera"
+                >
+                  撮影
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-row>
+          <v-row>
+            <v-data-table :headers="image_headers" :items="image_items" :items-per-page="5" class="mx-4 elevation-1">
               <template v-slot:item.base64="{item}">
                 <v-img
                 width="50"
@@ -32,9 +68,8 @@
           </v-row>
           <v-row>
             <!-- <button @click="camera">撮影</button> -->
-            <v-btn elevation="2" class="ma-4" color="" @click="camera">撮影</v-btn>
-            <v-btn elevation="2" class="ma-4" color="primary" @click="get_images">ラズパイで撮影した画像を取得</v-btn>
-            <v-btn elevation="2" class="ma-4" color="error" @click="get_yolov5_images">YOLO分析結果を取得</v-btn>
+            <v-btn elevation="2" class="mx-4" color="primary" @click="get_images">ラズパイで撮影した画像を取得</v-btn>
+            <v-btn elevation="2" class="mx-4" color="error" @click="get_yolov5_images">YOLO分析結果を取得</v-btn>
           </v-row>
         </v-container>
       </v-main>
