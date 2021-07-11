@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vuedemo</title>
+</head>
+<body>
+    <h1>ラズパイI/F</h1>
+    <div id="app">
+      <p>{{text}}</p>
+      <hr>
+      <div>
+       <button @click="camera">撮影</button>
+       <button @click="get_images">ラズパイで撮影した画像を取得</button>
+       <button @click="get_yolov5_images">YOLO分析結果を取得</button>
+      </div>
+    </div>
+    <script>
+    new Vue({
+        el:'#app',
+        data() {
+         return {
+          text:"HelloWorld!"
+         }
+        },
+        methods : {
+         camera : function (event) {
+          alert("camera on click!")
+         },
+         get_images : function (event) {
+          alert("get_images on click!")
+         },
+         get_yolov5_images : function(event) {
+          alert("get_yolov5_images on click!")
+         }
+        }
+    })
+    </script>
+</body>
+
+
+</html>
