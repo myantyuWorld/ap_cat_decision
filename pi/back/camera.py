@@ -54,11 +54,11 @@ def get_images():
 @app.route('/shooting')
 def shooting():
     with picamera.PiCamera() as camera:
-     camera.resolution = (640, 480)
-     camera.start_preview()
-     time.sleep(2)
-     timestr = datetime.now().strftime('%Y%m%d%H%M%S')
-     camera.capture(timestr+'.jpg')
+        camera.resolution = (640, 480)
+        camera.start_preview()
+        time.sleep(2)
+        timestr = datetime.now().strftime('%Y%m%d%H%M%S')
+        camera.capture(timestr +'.jpg')
 
     return image_file_to_base64("timestr"+'.jpg')
 
