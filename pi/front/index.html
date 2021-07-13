@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>Vuedemo</title>
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container>
+          <h1>ラズパイI/F</h1>
+          <v-row>
+            <v-card class="ma-4" outlined>
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="text-overline mb-4">
+                    ラズパイで写真撮影
+                  </div>
+                  <v-list-item-title class="text-h5 mb-1">
+                    "撮影"ボタンを押下することで、写真を撮影します。
+                  </v-list-item-title>
+                  <v-list-item-subtitle>撮影した写真は、yolov5分析用マシンの共有フォルダへとコピーされます。</v-list-item-subtitle>
+                  <v-list-item-subtitle>右に、撮影した写真のプレビューを表示します</v-list-item-subtitle>
+                  <v-list-item-subtitle>yolov5分析マシン共有フォルダ : [/home/click]</v-list-item-subtitle>
+                </v-list-item-content>
+
+                <v-list-item-avatar tile size="150" color="grey">
+                  <v-img height="auto" :src="'data:image/jpeg;base64,'+ shootingBytes"></v-img>
+                </v-list-item-avatar>
+              </v-list-item>
+
+              <v-card-actions>
+                <v-btn outlined rounded text @click="camera">
+                  撮影
+                  <v-icon dark right>
+                    mdi-camera
+                  </v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-row>
+          <v-row>
+            <v-col md="6">
+              <v-card class="ma-4">
+                <v-card-title>
+                  ラズパイ撮影データ
+                  <v-spacer></v-spacer>
+                </v-card-title>
+                <v-data-table :headers="image_headers" :items="image_items" :items-per-page="15" class="ma-4 elevation-1">
+                  <template v-slot:item.base64="{item}">
+                    <v-img width="50" height="auto" :src="'data:image/jpeg;base64,'+ item.base64"></v-img>
+                  </template>
+                </v-data-table>
+              </v-card>
+            </v-col>
+            <v-col md="6">
+              <v-card class="ma-4">
+                <v-card-title>
+                  yolov5分析データ
+                  <v-spacer></v-spacer>
+                  <v-select :items="select_items" label="yolov5分析結果ディレクトリ" dense></v-select>
+                </v-card-title>
+                <v-data-table :headers="image_headers" :items="image_items" :items-per-page="15" class="ma-4 elevation-1">
+                  <template v-slot:item.base64="{item}">
+                    <v-img width="50" height="auto" :src="'data:image/jpeg;base64,'+ item.base64"></v-img>
+                  </template>
+                </v-data-table>
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-btn elevation="2" class="ma-4" color="error" @click="get_yolov5_images">YOLO分析結果を取得</v-btn>
+          </v-row>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() {
+        return {
+          text: "ラズパイI/F画面へようこそ！",
+          imageBytes: "",
+          shootingBytes: "",
+          image_headers: [
+            { text: "file_name", value: "file_name" },
+            { text: "base64", value: "base64" }
+          ],
+          image_items: [],
+          select_items: [
+            'exp1', 'exp2', 'exp3', 'exp4'
+          ]
+        }
+      },
+      created: function () {
+        var vm = this;
+
+        axios.get('http://raspberrypi.local:5000/images')
+          .then(response => {
+            console.log(response.data)
+            vm.image_items = response.data
+          })
+          .catch(err => {
+            console.log(response.data)
+          })
+      },
+      methods: {
+        camera: function (event) {
+          var vm = this;
+
+          axios.get('http://raspberrypi.local:5000/shooting')
+            .then(response => {
+              console.log(response.data)
+              vm.shootingBytes = response.data
+            })
+            .catch(err => {
+              console.log(response.data)
+            })
+        },
+        get_yolov5_images: function (event) {
+          alert("get_yolov5_images on click!")
+        }
+      }
+    })
+  </script>
+</body>
+
+
+</html>
