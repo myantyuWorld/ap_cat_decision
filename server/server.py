@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 @app.route('/api/motion', methods=['POST'])
 def hello():
+    print(request.files)
     return "aaa"
 
 if __name__ == "__main__":
