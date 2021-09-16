@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-main>
+                <v-container>
+                    ラズパイストリーミング映像
+                    <img style="-webkit-user-select: none;margin: auto;background-color: hsl(0, 2%, 12%);" src="http://172.16.161.180:8081/">
+                    <template>
+                        <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1">
+                        </v-data-table>
+                    </template>
+                    <template>
+                        <v-data-table :headers="motion_header" :items="motion_data" :items-per-page="5" class="elevation-1">
+                        </v-data-table>
+                    </template>
+                </v-container>
+            </v-main>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: function () {
+                return {
+                    motion_header : [
+                        {text:'id', value:'id'},
+                        {text:'filename', value: 'filename'},
+                        {text:'img', value:'img'}
+                    ],
+                    motion_data : [
+                        // {
+                        //     id:'1',
+                        //     filename:'A.jpeg',
+                        //     img:'base64だよ'
+                        // },
+                        // {
+                        //     id:'2',
+                        //     filename:'B.jpeg',
+                        //     img:'base64だよ'
+                        // }
+                    ],
+                    headers: [
+                        {
+                            text: 'Dessert (100g serving)',
+                            align: 'start',
+                            sortable: false,
+                            value: 'name',
+                        },
+                        { text: 'Calories', value: 'calories' },
+                        { text: 'Fat (g)', value: 'fat' },
+                        { text: 'Carbs (g)', value: 'carbs' },
+                        { text: 'Protein (g)', value: 'protein' },
+                        { text: 'Iron (%)', value: 'iron' },
+                    ],
+                    desserts: [
+                        {
+                            name: 'Frozen Yogurt',
+                            calories: 159,
+                            fat: 6.0,
+                            carbs: 24,
+                            protein: 4.0,
+                            iron: '1%',
+                        },
+                        {
+                            name: 'Ice cream sandwich',
+                            calories: 237,
+                            fat: 9.0,
+                            carbs: 37,
+                            protein: 4.3,
+                            iron: '1%',
+                        }
+                    ],
+                }
+            },
+            methods : {
+                get_picture : function() {
+                    axios.get("http://localhost:5000/api/pictures")
+                    .then(function(res) {
+                        console.log(res)
+                    });
+                }
+            },
+            created : function() {
+                axios.get("http://localhost:5000/api/pictures")
+                .then(function(res) {
+                    console.log(res)
+                    console.log(res.data)
+                    console.log(res.data.fileList)
+                    var vm  = this
+                    vm.motion_data = []
+                    vm.motion_data = res.data.fileList
+                });
+            },
+        })
+    </script>
+</body>
+
+</html>
