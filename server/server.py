@@ -27,6 +27,8 @@ def get_pictures():
 
     fileList = []
     files = glob.glob(os.getcwd() + IMAGE_PATH)
+    
+    print(os.getcwd() + IMAGE_PATH)
     for f in files:
         with open(f, "rb") as img_file:
             img = {
