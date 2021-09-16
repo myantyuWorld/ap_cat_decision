@@ -11,6 +11,7 @@ IMAGE_PATH = "\image\\*"
 
 @app.route('/api/motion', methods=['POST'])
 def save_picture():
+    print(request.get_data())
     print(request.files)
     # file name
     fs = request.files['imageFile']
